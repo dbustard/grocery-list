@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-
+import Button from '../controls/button';
 class GroceryForm extends Component{
 
     state={
@@ -31,16 +31,24 @@ class GroceryForm extends Component{
         return(
 
             <form onSubmit={this.handleSubmit}>
-                <div>
-                    <label for="name">Name: </label>
-                    <input type="text" name="name" id="name" onChange={this.handleChange} value={this.state.name}/>
-                </div>
-                <div>
-                    <label for="quantity">Quantity: </label>
-                    <input type="number" name="quantity" id="quantity" onChange={this.handleChange} value={this.state.quantity}/>
-                </div>
-                <div>
-                    <button type="submit">Add</button>
+                <div className="row">                   
+                    <div className="col-12 col-md-8">
+                        <div className="form-group">
+                            <label htmlFor="name">Name: </label>
+                            <input className="form-control" type="text" name="name" id="name" onChange={this.handleChange} value={this.state.name}/>
+                        </div>
+                    </div>
+                    <div className="col-12 col-md-4">
+                        <div className="form-group">
+                            <label htmlFor="quantity">Quantity: </label>
+                            <input className="form-control" type="number" name="quantity" id="quantity" onChange={this.handleChange} value={this.state.quantity}/>
+                        </div>
+                    </div>
+                    <div className="col-12 col-md-4 offset-md-8">
+                        <div>
+                            <Button type="submit">Add</Button>
+                        </div>
+                    </div>
                 </div>
             </form>
         )

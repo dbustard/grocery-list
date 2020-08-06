@@ -1,4 +1,5 @@
 import React from 'react';
+import Button from '../controls/button';
 
 const GroceryListItem = props =>{
 
@@ -15,8 +16,8 @@ const GroceryListItem = props =>{
 
         <li style={getStyle()}>
             {groceryItem.name} ({groceryItem.quantity}) 
-            <button onClick={() =>{onDelete(groceryItem)}}>Remove</button>
-            <button onClick={()=>onMarkPuchased(groceryItem)}>Mark Puchased</button>
+            <Button type="danger" onClick={() =>{onDelete(groceryItem)}}>Remove</Button>
+            <Button type="secondary" onClick={()=>onMarkPuchased(groceryItem)}>Mark Puchased</Button>
         </li>
     )
 }

@@ -2,6 +2,8 @@ import React from 'react';
 import GroceryForm from './grocery-form';
 import GroceryListItem from './grocery-list-item';
 import { v1 } from 'uuid';
+import axios from 'axios';
+
 
 class GroceryList extends React.Component{
     
@@ -11,68 +13,59 @@ class GroceryList extends React.Component{
 
     componentDidMount(){
 
-        //call service
-        //parse return value
-        //update state
-
-        setTimeout(()=>{
-            this.setState(
-                {
-                    list: [
-                            {
-                                id: v1(),
-                                name: "Milk",
-                                quantity: 2,
-                                purchased: false
-                            },
-                            {
-                                id: v1(),
-                                name: "Coffee",
-                                quantity: 1,
-                                purchased: false
-                            }
-                        ]
-                }
-            )
-        }, 500)
+        axios.get('http://localhost:5000').then(result=>{
+            this.setState({
+                list: result.data
+            })
+        })
         
 
     }
 
     handleAdd = data =>{
-        const list = [...this.state.list];
-
-        data.id = v1();
-
-        list.push(data);
-
-        this.setState({
-            list: list
-        })
+  
+        axios.post('http://localhost:5000', data).then(
+            result=>{
+                const list = [...this.state.list];
+                
+                const item = result.data;
+                list.push(item);
+                this.setState({
+                    list: list
+                })
+            }
+        )
      
         
     }
 
     handleDelete = data =>{
-        const list = [...this.state.list.filter(item=>item.id !== data.id)];
+    
+        axios.delete("http://localhost:5000/" + data.id).then(
+            result =>{
+                const list = [...this.state.list.filter(item=>item.id !== data.id)];
 
-        this.setState({
-            list: list
-        })
-
-        
+                this.setState({
+                    list: list
+                })
+            }
+        ) 
     }
 
     handlePuchased = data =>{
-        
-        const list = [...this.state.list.map(item=> {
-            if (item.id === data.id) item.purchased = true;
-            return item;
-        })];
+      
+        data.purchased = true;
 
-        this.setState({
-            list: list
-        })
+        axios.put("http://localhost:5000/" + data.id, data).then(
+            result=>{
+
+                axios.get('http://localhost:5000').then(result=>{
+                    this.setState({
+                        list: result.data
+                    })
+                })
+            }
+        )
         
     }
 

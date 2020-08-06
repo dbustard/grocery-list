@@ -1,0 +1,9 @@
+header{
+    color: white;
+}
+footer{
+    padding: 2rem 1rem;
+    color: white;
+    text-align: center;
+    background-color: darkslategray;
+}

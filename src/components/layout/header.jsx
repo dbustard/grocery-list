@@ -1,9 +1,10 @@
 import React from 'react';
+import Navigation from './navigation';
 
 class Header extends React.Component{
 
     state={
-        isMenuOpen: true
+        isMenuOpen: false
     }
 
     styles={
@@ -25,20 +26,7 @@ class Header extends React.Component{
                     <h1>{this.props.title}</h1>
                     <button onClick={this.toggleMenu}>V</button>
                 </div>
-                {
-                    this.state.isMenuOpen ? 
-                    (
-                        <nav>
-                            <ul>
-                                <li>Home</li>
-                                <li>Reminder</li>
-                                <li>About us</li>
-                            </ul>
-                        </nav>
-                    ):
-                    null
-                }
-               
+                <Navigation isOpen={this.state.isMenuOpen} />
             </header>
         )
     }
