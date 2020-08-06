@@ -1,15 +1,15 @@
 import React from 'react';
-import {Link} from 'react-router-dom';
+import {NavLink} from 'react-router-dom';
 
 const Navigation = (props) =>{
     if (!props.isOpen) return null;
     
     return(
-        <nav>
+        <nav onClick={()=>props.close()}>
             <ul>
-                <li><Link to="/">Home</Link></li>
-                <li><Link to="/reminder">Reminder</Link></li>
-                <li><Link to="/about-us">About us</Link></li>
+                <li><NavLink to="/home" activeClass="active">Home</NavLink></li>
+                <li><NavLink to="/reminder" activeClass="active">Reminder</NavLink></li>
+                <li><NavLink to="/about-us" activeClass="active">About us</NavLink></li>
             </ul>
         </nav>
     )

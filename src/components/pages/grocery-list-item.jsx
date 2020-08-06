@@ -15,9 +15,9 @@ const GroceryListItem = props =>{
     return(
 
         <li style={getStyle()}>
-            {groceryItem.name} ({groceryItem.quantity}) 
+            <span>{groceryItem.name} ({groceryItem.quantity}) </span>
             <Button type="danger" onClick={() =>{onDelete(groceryItem)}}>Remove</Button>
-            <Button type="secondary" onClick={()=>onMarkPuchased(groceryItem)}>Mark Puchased</Button>
+            <Button type="secondary" onClick={()=>onMarkPuchased(groceryItem)}>Puchased</Button>
         </li>
     )
 }

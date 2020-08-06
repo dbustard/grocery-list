@@ -7,13 +7,6 @@ class Header extends React.Component{
         isMenuOpen: false
     }
 
-    styles={
-        header:{
-            backgroundColor: "darkslategray",
-            padding: "1rem",
-        }
-    }
-
     toggleMenu = () =>{
         this.setState({isMenuOpen: !this.state.isMenuOpen});
     };
@@ -21,12 +14,21 @@ class Header extends React.Component{
     render(){
         
         return(
-            <header style={this.styles.header}>
+            <header>
                 <div>
                     <h1>{this.props.title}</h1>
-                    <button onClick={this.toggleMenu}>V</button>
+
+                    <div>
+                        <button onClick={this.toggleMenu}>
+                            <svg viewBox="0 0 100 80" width="20" height="20">
+                                <rect width="100" height="20"></rect>
+                                <rect y="30" width="100" height="20"></rect>
+                                <rect y="60" width="100" height="20"></rect>
+                            </svg>
+                        </button>
+                    </div>
                 </div>
-                <Navigation isOpen={this.state.isMenuOpen} />
+                <Navigation isOpen={this.state.isMenuOpen} close={()=>this.setState({isMenuOpen: false})} />
             </header>
         )
     }
